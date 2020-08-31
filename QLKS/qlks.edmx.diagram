@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7aee3f756da846afb731d5f3b03ca9dd" Name="Diagram1">
+        <EntityTypeShape EntityType="qlksModel.tblKhachHang" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="qlksModel.tblNhanVien" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="qlksModel.tblPhieuDatPhong" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="qlksModel.tblPhong" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="qlksModel.tblSanPham" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="qlksModel.tblSanPhamPhong" Width="1.5" PointX="5.25" PointY="1.5" />
+        <AssociationConnector Association="qlksModel.FK_tblPhieuDatPhong_tblKhachHang" />
+        <AssociationConnector Association="qlksModel.FK_tblPhieuDatPhong_tblNhanVien" />
+        <AssociationConnector Association="qlksModel.FK_tblPhieuDatPhong_tblPhong" />
+        <AssociationConnector Association="qlksModel.FK_tblSanPhamPhong_tblPhieuDatPhong" />
+        <AssociationConnector Association="qlksModel.FK_tblSanPhamPhong_tblSanPham" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

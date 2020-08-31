@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html ng-app="qlks">
+<head>
+    <meta charset="utf-8">
+    <title>Phiếu đặt phòng</title>
+    <script src="../Scripts/assets/js/angular.min.js"></script>
+    <link href="../App_Print/PrintPaymentBookingRoom.css" rel="stylesheet" />
+    <script src="../App_Print/PrintPaymentBookingRoom.js"></script>
+    <script src="../Scripts/Common/JavaScript/commonEM.js"></script>
+    <script src="../Scripts/assets/js/lodash.min.js"></script>
+</head>
+<body ng-controller="PrintInputWarehouseTransactionCtrl" style="padding: 3%" data-ng-init="onPrintInit()">
+    <div style="width: 21cm; position: relative" ng-show="loading">
+        <div style="position: relative">
+            <div contenteditable style="position: absolute; left: 24px; text-align: center; top: 20px; line-height: 22px; font-weight: bold">
+                <p>QUẢN LÝ KHÁCH SẠN</p>
+            </div>
+        </div>
+        <div style="position: relative" class="p_thuchi">
+            <div style="display: inline-block; width: 96%; text-align: center; margin-bottom: 30px;">
+                <h1 style="font-size: 32px; font-weight: bold; letter-spacing: normal; margin-top: 60px;">Phiếu đặt phòng</h1>
+                <p>Từ ngày {{BookingRoomList.NgayBD | date : 'dd/MM/yyyy'}}</p>
+                <p>Đến ngày {{BookingRoomList.NgayKT | date : 'dd/MM/yyyy'}}</p>
+            </div>
+            <div style="width: 150px; position: absolute; right: 30px; top: 20px; font-size: 13px; line-height: 18px">
+                <p>Mã phiếu: <span>{{BookingRoomList.MaPhieuDP}}</span></p>
+            </div>
+            <br />
+            <p style="width: 85%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 10%; height: 13px;">
+                <b style="position: absolute; left: 0; background: #fff; height: 20px;" contenteditable>Họ và tên:</b><span contenteditable>{{BookingRoomList.TenKH}}</span>
+            </p>
+            <p style="width: 88%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 7%; height: 13px;">
+                <b style="position: absolute; left: 0; background: #fff; height: 20px;" contenteditable>Phòng:</b><span contenteditable>{{BookingRoomList.TenPhong}}</span>
+            </p>
+            <p style="width: 86%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 9%; height: 13px;">
+                <b style="position: absolute; left: 0; background: #fff; height: 20px;" contenteditable>Đơn giá:</b><span contenteditable>{{BookingRoomList.DonGia}}</span>
+            </p>
+            <p style="width: 84%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 11%; height: 13px;">
+                <b style="position: absolute; left: 0; background: #fff; height: 20px;" contenteditable>Thành tiền:</b><span contenteditable>{{BookingRoomList.TongTien}}</span>
+            </p>
+        </div>
+        <table style="font-size: 14px;">
+            <thead>
+                <tr>
+                    <th style="text-align: center">STT</th>
+                    <th style="text-align: center">Sản phẩm / Dịch vụ</th>
+                    <th style="text-align: center">Đơn giá</th>
+                    <th style="text-align: center">Số lượng</th>
+                    <th style="text-align: center">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in BookingRoomDetailList track by $index">
+                    <td style="text-align: center">{{$index + 1}}</td>
+                    <td>{{ item.TenSP ? item.TenSP : item.TenDV  }}</td>
+                    <td style="text-align: right">{{ item.DonGia }}</td>
+                    <td style="text-align: center">{{ item.SoLuong }}</td>
+                    <td style="text-align: right">{{ item.ThanhTien }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: center">Tổng</td>
+                    <td style="text-align: right">{{lblTotalMoneySPDV}}</td>
+                </tr>
+            </tfoot>
+        </table>
+        <br>
+        <p style="width: 75%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 20%; height: 13px;">
+            <b style="position: absolute; left: 0; background: #fff; height: 20px;">Tổng tiền thanh toán:</b><span>{{lblTotalMoney}}</span>
+        </p>
+        <p style="width: 72%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative; padding-left: 23%; height: 13px;">
+            <b style="position: absolute; left: 0; background: #fff; height: 20px;">Tổng tiền viết bằng chữ:</b><span>{{lblTotalMoneyVN}}</span>
+        </p>
+        <p style="width: 95%; display: inline-block; border-bottom: 1px dashed #000; padding: 1px 0px; margin-bottom: 10px; position: relative">&nbsp;</p>
+
+        <div style="margin-top: 30px; display: inline-block; width: 100%;">
+            <ul style="margin: 0">
+                <li style="float: left; width: 33%; text-align: center">
+                    <b style="font-weight: bold" contenteditable>Người lập</b>
+                    <p style="padding: 10px 0;">(Ký, họ tên)</p>
+                    <span contenteditable style="margin-top: 90px; font-style: italic; font-weight: bold;"></span>
+                </li>
+                <li style="float: right; width: 33%; text-align: center">
+                    <b style="font-weight: bold" contenteditable>Người nộp</b>
+                    <p style="padding: 10px 0;">(Ký, họ tên)</p>
+                    <span contenteditable style="margin-top: 90px; font-style: italic; font-weight: bold;"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

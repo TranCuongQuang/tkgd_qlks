@@ -1,0 +1,79 @@
+﻿body {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-info {
+    top: 14px !important;
+}
+
+.panel {
+    margin-bottom: 20px !important;
+}
+
+.panel-heading {
+    font-size: 14px !important;
+    text-transform: uppercase;
+}
+
+.panel-body {
+    padding: 10px !important;
+}
+
+.form-button {
+    text-align: center !important;
+}
+
+    .form-button button {
+        margin: 0 10px;
+    }
+
+.btn {
+    font-size: 14px;
+    border: 0;
+    height: 34px;
+}
+
+.table-qlks table thead tr {
+    background: #DCAF27 !important;
+}
+
+    .table-qlks table thead tr th {
+        text-align: center;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #F7F7F7;
+        font-weight: bold;
+    }
+
+.table-qlks .dataTables_wrapper .row {
+    background-color: #fff !important;
+}
+
+    .table-qlks .dataTables_wrapper .row:last-child {
+        border: 0 !important;
+    }
+
+.booking:hover {
+    cursor: pointer;
+}
+
+.modal-body {
+    overflow: hidden;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 34px !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single {
+    border-radius: 0 !important;
+}
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 32px !important;
+    }

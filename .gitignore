@@ -1,0 +1,31 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+package-lock.json
+QLKS.csproj
+QLKS.csproj.user
+
+# testing
+coverage
+
+# production
+build
+
+# misc
+.DS_Store
+Thumbs.db
+.env
+.idea
+npm-debug.log
+compilation-stats.json
+config_url.dev.js
+.vscode
+.vs
+QLKS/QLKS.csproj
+QLKS/QLKS.csproj.user
+QLKS/bin
+QLKS/obj
+#QLKS/Web.config
+#/Web.Debug.config
+#QLKS/Web.Release.config
