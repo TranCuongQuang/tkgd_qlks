@@ -30,9 +30,9 @@ namespace QLKS
         public virtual DbSet<tblKhachHang> tblKhachHangs { get; set; }
         public virtual DbSet<tblNhanVien> tblNhanViens { get; set; }
         public virtual DbSet<tblPhieuDatPhong> tblPhieuDatPhongs { get; set; }
-        public virtual DbSet<tblPhong> tblPhongs { get; set; }
         public virtual DbSet<tblSanPham> tblSanPhams { get; set; }
         public virtual DbSet<tblSanPhamPhong> tblSanPhamPhongs { get; set; }
+        public virtual DbSet<tblPhong> tblPhongs { get; set; }
     
         public virtual ObjectResult<GetUser_Result> GetUser(string user)
         {

@@ -32,8 +32,8 @@ namespace QLKS
     
         public virtual tblKhachHang tblKhachHang { get; set; }
         public virtual tblNhanVien tblNhanVien { get; set; }
-        public virtual tblPhong tblPhong { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSanPhamPhong> tblSanPhamPhongs { get; set; }
+        public virtual tblPhong tblPhong { get; set; }
     }
 }

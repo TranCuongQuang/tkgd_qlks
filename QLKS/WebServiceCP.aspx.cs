@@ -280,10 +280,17 @@ namespace QLKS
                 string maPhong = dym.MaPhong;
                 string tenPhong = dym.TenPhong;
                 string trangThai = dym.TrangThai;
+                int lau = !string.IsNullOrEmpty(dym.Lau.ToString()) ? int.Parse(dym.Lau.ToString()) : 0;
+                string loaiPhong = dym.LoaiPhong;
+
                 using (var ctx = new qlksEntities())
                 {
                     var emp = ctx.tblPhongs.AsEnumerable()
-                        .Where(st => (maPhong == "" || st.MaPhong == Convert.ToInt32(maPhong)) && (tenPhong == "" || st.TenPhong == tenPhong) && (trangThai == "" || st.TrangThai == trangThai.Equals("1")))
+                        .Where(st => (maPhong == "" || st.MaPhong == Convert.ToInt32(maPhong)) &&
+                        (tenPhong == "" || st.TenPhong == tenPhong) &&
+                        (trangThai == "" || st.TrangThai == trangThai.Equals("1")) &&
+                        (lau == 0 || st.Lau == lau) &&
+                        (loaiPhong == "" || st.LoaiPhong == loaiPhong))
                         .Select(st => new
                         {
                             st.MaPhong,

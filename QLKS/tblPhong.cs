@@ -24,6 +24,8 @@ namespace QLKS
         public string TenPhong { get; set; }
         public Nullable<bool> TrangThai { get; set; }
         public Nullable<decimal> DonGia { get; set; }
+        public Nullable<int> Lau { get; set; }
+        public string LoaiPhong { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPhieuDatPhong> tblPhieuDatPhongs { get; set; }

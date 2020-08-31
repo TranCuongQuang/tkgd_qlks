@@ -9,23 +9,27 @@
             <div class="panel-body">
                 <div class="form-group col-md-3">
                     <label class="control-label">Lầu</label>
-                    <select class="chosen-select form-control" ng-model="ddlFlowSearch" ui-select2 style="width: 100%">
+                    <select class="chosen-select form-control" ng-model="ddlFloorSearch" ui-select2 style="width: 100%">
                         <option value="">Chọn lầu</option>
-                        <%--<option ng-repeat="item in RoomList" value="{{item.MaPhong}}">{{item.TenPhong}}</option>--%>
+                        <option value="1">Lầu 1</option>
+                        <option value="2">Lầu 2</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Trạng thái</label>
                     <select class="chosen-select form-control" ng-model="ddlStatusSearch" ui-select2 style="width: 100%">
                         <option value="">Chọn trạng thái</option>
-                        <%--<option ng-repeat="item in CustomerList" value="{{item.MaKH}}">{{item.TenKH}}</option>--%>
+                        <option value="0">Trống</option>
+                        <option value="1">Đã đặt</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label class="control-label">Loại phòng</label>
                     <select class="chosen-select form-control" ng-model="ddlRoomTypeSearch" ui-select2 style="width: 100%">
                         <option value="">Chọn loại phòng</option>
-                        <%--<option ng-repeat="item in CustomerList" value="{{item.MaKH}}">{{item.TenKH}}</option>--%>
+                        <option value="Phòng đơn">Phòng đơn</option>
+                        <option value="Phòng đôi">Phòng đôi</option>
+                        <option value="Phòng gia đình">Phòng gia đình</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -33,7 +37,7 @@
                     <input type="text" placeholder="Mã phòng" class="form-control" ng-model="txtRoomIdSearch" />
                 </div>
                 <div class="col-md-12 form-button">
-                    <button class="btn btn-info" type="button" ng-click="GetBookingRoom()">
+                    <button class="btn btn-info" type="button" ng-click="GetRoom()">
                         <i class="ace-icon fa fa-search"></i>Tìm kiếm
                     </button>
                 </div>
@@ -170,7 +174,7 @@
                             <div style="margin-top: 10px">
                                 <div class="radio-inline" style="padding-left: unset">
                                     <label>
-                                        <input name="form-field-radio" type="radio" class="ace"  ng-model="radGT" value="1">
+                                        <input name="form-field-radio" type="radio" class="ace" ng-model="radGT" value="1">
                                         <span class="lbl">Nam</span>
                                     </label>
                                 </div>

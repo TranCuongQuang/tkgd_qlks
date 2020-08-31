@@ -54,6 +54,8 @@
           <Property Name="TenPhong" Type="nvarchar" MaxLength="255" />
           <Property Name="TrangThai" Type="bit" />
           <Property Name="DonGia" Type="money" />
+          <Property Name="Lau" Type="int" />
+          <Property Name="LoaiPhong" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSanPham">
           <Key>
@@ -173,7 +175,6 @@
           <EntitySet Name="tblKhachHangs" EntityType="qlksModel.tblKhachHang" />
           <EntitySet Name="tblNhanViens" EntityType="qlksModel.tblNhanVien" />
           <EntitySet Name="tblPhieuDatPhongs" EntityType="qlksModel.tblPhieuDatPhong" />
-          <EntitySet Name="tblPhongs" EntityType="qlksModel.tblPhong" />
           <EntitySet Name="tblSanPhams" EntityType="qlksModel.tblSanPham" />
           <EntitySet Name="tblSanPhamPhongs" EntityType="qlksModel.tblSanPhamPhong" />
           <AssociationSet Name="FK_tblPhieuDatPhong_tblKhachHang" Association="qlksModel.FK_tblPhieuDatPhong_tblKhachHang">
@@ -184,10 +185,6 @@
             <End Role="tblNhanVien" EntitySet="tblNhanViens" />
             <End Role="tblPhieuDatPhong" EntitySet="tblPhieuDatPhongs" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblPhieuDatPhong_tblPhong" Association="qlksModel.FK_tblPhieuDatPhong_tblPhong">
-            <End Role="tblPhong" EntitySet="tblPhongs" />
-            <End Role="tblPhieuDatPhong" EntitySet="tblPhieuDatPhongs" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblSanPhamPhong_tblPhieuDatPhong" Association="qlksModel.FK_tblSanPhamPhong_tblPhieuDatPhong">
             <End Role="tblPhieuDatPhong" EntitySet="tblPhieuDatPhongs" />
             <End Role="tblSanPhamPhong" EntitySet="tblSanPhamPhongs" />
@@ -195,6 +192,11 @@
           <AssociationSet Name="FK_tblSanPhamPhong_tblSanPham" Association="qlksModel.FK_tblSanPhamPhong_tblSanPham">
             <End Role="tblSanPham" EntitySet="tblSanPhams" />
             <End Role="tblSanPhamPhong" EntitySet="tblSanPhamPhongs" />
+          </AssociationSet>
+          <EntitySet Name="tblPhongs" EntityType="qlksModel.tblPhong" />
+          <AssociationSet Name="FK_tblPhieuDatPhong_tblPhong" Association="qlksModel.FK_tblPhieuDatPhong_tblPhong">
+            <End Role="tblPhong" EntitySet="tblPhongs" />
+            <End Role="tblPhieuDatPhong" EntitySet="tblPhieuDatPhongs" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="GetUser_Result">
@@ -248,18 +250,8 @@
           <Property Name="TrangThai" Type="Boolean" />
           <NavigationProperty Name="tblKhachHang" Relationship="qlksModel.FK_tblPhieuDatPhong_tblKhachHang" FromRole="tblPhieuDatPhong" ToRole="tblKhachHang" />
           <NavigationProperty Name="tblNhanVien" Relationship="qlksModel.FK_tblPhieuDatPhong_tblNhanVien" FromRole="tblPhieuDatPhong" ToRole="tblNhanVien" />
-          <NavigationProperty Name="tblPhong" Relationship="qlksModel.FK_tblPhieuDatPhong_tblPhong" FromRole="tblPhieuDatPhong" ToRole="tblPhong" />
           <NavigationProperty Name="tblSanPhamPhongs" Relationship="qlksModel.FK_tblSanPhamPhong_tblPhieuDatPhong" FromRole="tblPhieuDatPhong" ToRole="tblSanPhamPhong" />
-        </EntityType>
-        <EntityType Name="tblPhong">
-          <Key>
-            <PropertyRef Name="MaPhong" />
-          </Key>
-          <Property Name="MaPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenPhong" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="TrangThai" Type="Boolean" />
-          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="tblPhieuDatPhongs" Relationship="qlksModel.FK_tblPhieuDatPhong_tblPhong" FromRole="tblPhong" ToRole="tblPhieuDatPhong" />
+          <NavigationProperty Name="tblPhong" Relationship="qlksModel.FK_tblPhieuDatPhong_tblPhong" FromRole="tblPhieuDatPhong" ToRole="tblPhong" />
         </EntityType>
         <EntityType Name="tblSanPham">
           <Key>
@@ -307,18 +299,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblPhieuDatPhong_tblPhong">
-          <End Type="qlksModel.tblPhong" Role="tblPhong" Multiplicity="0..1" />
-          <End Type="qlksModel.tblPhieuDatPhong" Role="tblPhieuDatPhong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPhong">
-              <PropertyRef Name="MaPhong" />
-            </Principal>
-            <Dependent Role="tblPhieuDatPhong">
-              <PropertyRef Name="MaPhong" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblSanPhamPhong_tblPhieuDatPhong">
           <End Type="qlksModel.tblPhieuDatPhong" Role="tblPhieuDatPhong" Multiplicity="0..1" />
           <End Type="qlksModel.tblSanPhamPhong" Role="tblSanPhamPhong" Multiplicity="*" />
@@ -340,6 +320,30 @@
             </Principal>
             <Dependent Role="tblSanPhamPhong">
               <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblPhong">
+          <Key>
+            <PropertyRef Name="MaPhong" />
+          </Key>
+          <Property Name="MaPhong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenPhong" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Lau" Type="Int32" />
+          <Property Name="LoaiPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPhieuDatPhongs" Relationship="qlksModel.FK_tblPhieuDatPhong_tblPhong" FromRole="tblPhong" ToRole="tblPhieuDatPhong" />
+        </EntityType>
+        <Association Name="FK_tblPhieuDatPhong_tblPhong">
+          <End Type="qlksModel.tblPhong" Role="tblPhong" Multiplicity="0..1" />
+          <End Type="qlksModel.tblPhieuDatPhong" Role="tblPhieuDatPhong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPhong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="tblPhieuDatPhong">
+              <PropertyRef Name="MaPhong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -393,16 +397,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblPhongs">
-            <EntityTypeMapping TypeName="qlksModel.tblPhong">
-              <MappingFragment StoreEntitySet="tblPhong">
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
-                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblSanPhams">
             <EntityTypeMapping TypeName="qlksModel.tblSanPham">
               <MappingFragment StoreEntitySet="tblSanPham">
@@ -421,6 +415,18 @@
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaPhieuDP" ColumnName="MaPhieuDP" />
                 <ScalarProperty Name="MaSPP" ColumnName="MaSPP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPhongs">
+            <EntityTypeMapping TypeName="qlksModel.tblPhong">
+              <MappingFragment StoreEntitySet="tblPhong">
+                <ScalarProperty Name="LoaiPhong" ColumnName="LoaiPhong" />
+                <ScalarProperty Name="Lau" ColumnName="Lau" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

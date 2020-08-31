@@ -4,7 +4,7 @@ app.controller('BookingRoomCtrl', function ($scope, $http, $timeout, $window) {
     $scope.CustomerList = [];
     $scope.txtRoomId = "";
     $scope.ddlCustomer = "";
-    $scope.ddlFlowSearch = "";
+    $scope.ddlFloorSearch = "";
     $scope.ddlStatusSearch = "";
     $scope.ddlRoomTypeSearch = "";
     $scope.txtRoomIdSearch = "";
@@ -69,9 +69,11 @@ app.controller('BookingRoomCtrl', function ($scope, $http, $timeout, $window) {
 
     $scope.GetRoom = function () {
         var params = {
-            MaPhong: "",
-            TenPhong: "",
-            TrangThai: ""
+            MaPhong: $scope.txtRoomIdSearch,
+            TenPhong: "", 
+            Lau: $scope.ddlFloorSearch,
+            TrangThai: $scope.ddlStatusSearch,
+            LoaiPhong: $scope.ddlRoomTypeSearch,
         }
         $http({
             url: `/WebServiceCP.aspx?action=GetRoomList`,
