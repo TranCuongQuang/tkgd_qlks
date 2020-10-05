@@ -9,14 +9,14 @@
             <div class="panel-body">
                 <div class="form-group col-md-4">
                     <label class="control-label">Phòng</label>
-                    <select class="chosen-select form-control" ng-model="ddlRoom" ui-select2 style="width: 100%">
+                    <select class="chosen-select form-control" id="ddlRoom" ng-model="ddlRoom" ui-select2 style="width: 100%">
                         <option value="">Chọn phòng</option>
                         <option ng-repeat="item in RoomList" value="{{item.MaPhong}}">{{item.TenPhong}}</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Khách hàng</label>
-                    <select class="chosen-select form-control" ng-model="ddlCustomer" ui-select2 style="width: 100%">
+                    <select class="chosen-select form-control" id="ddlCustomer" ng-model="ddlCustomer" ui-select2 style="width: 100%">
                         <option value="">Chọn khách hàng</option>
                         <option ng-repeat="item in CustomerList" value="{{item.MaKH}}">{{item.TenKH}}</option>
                     </select>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label class="control-label">Sản phẩm</label>
-                            <select class="chosen-select form-control" ng-model="ddlProduct" ui-select2 style="width: 100%">
+                            <select class="chosen-select form-control" id="ddlProduct" ng-model="ddlProduct" ui-select2 style="width: 100%">
                                 <option value="">Chọn sản phẩm</option>
                                 <option ng-repeat="item in ProductList" value="{{item.MaSP}}">{{item.TenSP}}</option>
                             </select>

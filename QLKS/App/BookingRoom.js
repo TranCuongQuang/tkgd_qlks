@@ -70,7 +70,7 @@ app.controller('BookingRoomCtrl', function ($scope, $http, $timeout, $window) {
     $scope.GetRoom = function () {
         var params = {
             MaPhong: $scope.txtRoomIdSearch,
-            TenPhong: "", 
+            TenPhong: "",
             Lau: $scope.ddlFloorSearch,
             TrangThai: $scope.ddlStatusSearch,
             LoaiPhong: $scope.ddlRoomTypeSearch,
@@ -112,8 +112,13 @@ app.controller('BookingRoomCtrl', function ($scope, $http, $timeout, $window) {
                 setTimeout(function () {
                     $scope.ddlCustomer = $scope.CustomerNew.MaKH.toString();
                     $scope.safeApply($scope.ddlCustomer);
-                }, 1000);
+                }, 200);
             }
+
+            setTimeout(function () {
+                $("#ddlCustomer").select2().trigger('change')
+            }, 200);
+
             console.log("$scope.CustomerNew", $scope.CustomerNew);
             console.log("GetCustomer", response);
         }, function (err) {

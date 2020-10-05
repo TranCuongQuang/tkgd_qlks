@@ -18,6 +18,8 @@
     <link href="Content/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="Content/select.dataTables.min.css" rel="stylesheet" />
     <link href="Scripts/assets/css/toastr.min.css" rel="stylesheet" />
+
+    <link href="Content/style.css" rel="stylesheet" />
     <!-- ace styles -->
     <link rel="stylesheet" href="Scripts/assets/css/ace.min.css" class="ace-main-stylesheet" />
     <link rel="stylesheet" href="Scripts/assets/css/ace-skins.min.css" />
@@ -41,7 +43,7 @@
 
     <script src="Scripts/assets/js/toastr.js"></script>
 </head>
-<body class="login-layout blur-login">
+<body class="login-layout blur-login  login-background">
     <form runat="server">
         <div class="main-container" ng-app="QLKS" ng-controller="LoginCtrl">
             <div class="main-content">

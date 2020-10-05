@@ -1,3 +1,9 @@
-﻿.user-info{
+﻿.user-info {
     max-width: unset !important;
+}
+
+.login-background {
+    /*background: url(images/meteorshower2.jpg) #394557;*/
+    background-image: url('../Images/22395496.jpg') !important;
+    background-size: contain !important;
 }

@@ -34,14 +34,14 @@
 
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Danh sách nhân viên
+                Danh sách khách hàng
             </div>
             <div class="panel-body table-qlks">
                 <table id="dynamic-table" datatable="ng" dt-options="dtOptions" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Mã NV</th>
-                            <th>Tên NV</th>
+                            <th>Mã KH</th>
+                            <th>Tên KH</th>
                             <th>SĐT</th>
                             <th>Ngày sinh</th>
                             <th>Email</th>

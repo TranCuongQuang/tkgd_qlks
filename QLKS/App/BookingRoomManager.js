@@ -37,7 +37,9 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
         var params = {
             MaPhong: "",
             TenPhong: "",
-            TrangThai: ""
+            TrangThai: "",
+            Lau: "",
+            LoaiPhong: "",
         }
         $http({
             url: `/WebServiceCP.aspx?action=GetRoomList`,
@@ -50,6 +52,10 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
             var temp = response.data.Data;
             console.log("GetRoom", response);
             $scope.RoomList = temp;
+
+            setTimeout(function () {
+                $("#ddlRoom").select2().trigger('change')
+            }, 200);
         }, function (err) {
             $scope.RoomList = [];
             console.log(err);
@@ -72,6 +78,10 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
             var temp = response.data.Data;
             $scope.CustomerList = temp;
             console.log("GetCustomer", response);
+
+            setTimeout(function () {
+                $("#ddlCustomer").select2().trigger('change')
+            }, 200);
         }, function (err) {
             $scope.CustomerList = [];
             console.log(err);
@@ -94,6 +104,10 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
             var temp = response.data.Data;
             $scope.ProductList = temp;
             console.log("GetProduct", response);
+
+            setTimeout(function () {
+                $("#ddlProduct").select2().trigger('change')
+            }, 200);
         }, function (err) {
             $scope.ProductList = [];
             console.log(err);
@@ -187,6 +201,11 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
             item.ThanhTien = item.SoLuong * item.DonGia;
             $scope.ddlProduct = "";
             $scope.SumMoneyProduct();
+
+            setTimeout(function () {
+                $("#ddlProduct").select2().trigger('change')
+            }, 200);
+
             return;
         }
 
@@ -196,6 +215,11 @@ app.controller('BookingRoomManagerCtrl', function ($scope, $http, $timeout, $win
         $scope.ChooseProductList.push(item);
         $scope.ddlProduct = "";
         $scope.SumMoneyProduct();
+
+        setTimeout(function () {
+            $("#ddlProduct").select2().trigger('change')
+        }, 200);
+
         console.log("ChooseProduct", $scope.ChooseProductList);
     }
 

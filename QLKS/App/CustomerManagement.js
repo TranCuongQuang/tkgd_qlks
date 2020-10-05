@@ -126,6 +126,7 @@ app.controller('CustomerManagementCtrl', function ($scope, $http, $timeout, $win
             } else {
                 toastr.error("Lưu thất bại !");
             }
+            $("#modal-table").modal("hide");
         }, function (err) {
             toastr.error("Xảy ra lỗi trong quá trình thực thi.");
             console.log(err);
@@ -162,6 +163,7 @@ app.controller('CustomerManagementCtrl', function ($scope, $http, $timeout, $win
             } else {
                 toastr.error("Lưu thất bại !");
             }
+            $("#modal-table").modal("hide");
         }, function (err) {
             toastr.error("Xảy ra lỗi trong quá trình thực thi.");
             console.log(err);

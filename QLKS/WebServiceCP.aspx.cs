@@ -99,7 +99,7 @@ namespace QLKS
                 using (var ctx = new qlksEntities())
                 {
                     var emp = ctx.tblKhachHangs.AsEnumerable()
-                        .Where(st => (maKH == "" || st.MaKH == Convert.ToInt32(maKH)) && (tenKH == "" || st.TenKH == tenKH))
+                        .Where(st => (maKH == "" || st.MaKH == Convert.ToInt32(maKH)) && (tenKH == "" || st.TenKH.Contains(tenKH)))
                         .Select(st => new
                         {
                             st.MaKH,
@@ -281,7 +281,7 @@ namespace QLKS
                 string tenPhong = dym.TenPhong;
                 string trangThai = dym.TrangThai;
                 int lau = !string.IsNullOrEmpty(dym.Lau.ToString()) ? int.Parse(dym.Lau.ToString()) : 0;
-                string loaiPhong = dym.LoaiPhong;
+                string loaiPhong = !string.IsNullOrEmpty(dym.LoaiPhong.ToString()) ? dym.LoaiPhong : "";
 
                 using (var ctx = new qlksEntities())
                 {
@@ -359,7 +359,7 @@ namespace QLKS
                 using (var ctx = new qlksEntities())
                 {
                     var emp = ctx.tblSanPhams.AsEnumerable()
-                        .Where(st => (maSP == "" || st.MaSP == Convert.ToInt32(maSP)) && (tenSP == "" || st.TenSP == tenSP))
+                        .Where(st => (maSP == "" || st.MaSP == Convert.ToInt32(maSP)) && (tenSP == "" || st.TenSP.Contains(tenSP)))
                         .Select(st => new
                         {
                             st.MaSP,
